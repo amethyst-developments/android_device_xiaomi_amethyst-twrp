@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_amethyst.mk
+    $(LOCAL_DIR)/twrp_amethyst.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_amethyst-user \
-    omni_amethyst-userdebug \
-    omni_amethyst-eng
+    twrp_amethyst-user \
+    twrp_amethyst-userdebug \
+    twrp_amethyst-eng
