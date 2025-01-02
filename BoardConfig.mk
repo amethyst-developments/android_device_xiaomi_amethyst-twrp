@@ -40,13 +40,13 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_vendor=erofs \
     POSTINSTALL_OPTIONAL_vendor=true
 
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    vendor/recovery/security/miui
+#PRODUCT_EXTRA_RECOVERY_KEYS += \
+#    vendor/recovery/security/miui
 
 # Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-	$(DEVICE_PATH) \
-	vendor/qcom/opensource/commonsys-intf/display
+#PRODUCT_SOONG_NAMESPACES += \
+#	$(DEVICE_PATH) \
+#	vendor/qcom/opensource/commonsys-intf/display
 
 # TWRP - Specifics
 TW_THEME                := portrait_hdpi
@@ -96,8 +96,8 @@ VENDOR_SECURITY_PATCH   := $(PLATFORM_SECURITY_PATCH)
 BOOT_SECURITY_PATCH     := $(PLATFORM_SECURITY_PATCH)
 
 # Dynamic partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-PRODUCT_BUILD_SUPER_PARTITION  := false
+#PRODUCT_USE_DYNAMIC_PARTITIONS := true
+#PRODUCT_BUILD_SUPER_PARTITION  := false
 
 # Architecture
 TARGET_ARCH := arm64
@@ -197,16 +197,16 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2021-08-01
+# VENDOR_SECURITY_PATCH := 2021-08-01
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 
 # Hack: prevent anti rollback
-PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := 2099-12-31
-PLATFORM_VERSION := 16.1.0
+#PLATFORM_SECURITY_PATCH := 2099-12-31
+#VENDOR_SECURITY_PATCH := 2099-12-31
+#PLATFORM_VERSION := 16.1.0
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi

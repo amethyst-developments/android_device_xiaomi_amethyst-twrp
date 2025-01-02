@@ -7,27 +7,49 @@
 
 LOCAL_PATH := device/xiaomi/amethyst
 
-# A/B
+# Configure Virtual A/B
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
+
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
+# Enable developer GSI keys
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
+# Configure emulated_storage.mk
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=ext4 \
+    FILESYSTEM_TYPE_system=erofs \
     POSTINSTALL_OPTIONAL_system=true
 
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_vendor=true \
+    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
+    FILESYSTEM_TYPE_vendor=erofs \
+    POSTINSTALL_OPTIONAL_vendor=true
 
+# Boot control, Firmware
 PRODUCT_PACKAGES += \
-    bootctrl.volcano
+    android.hardware.boot@1.2-impl-qti.recovery \
+    miui_prebuilts
+
+# Update engine
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_engine_sideload \
+    update_verifier
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
-    cppreopts.sh \
-    update_engine \
-    update_verifier \
-    update_engine_sideload
+    checkpoint_gc
+
+PRODUCT_TARGET_VNDK_VERSION := 34
 
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
@@ -35,8 +57,24 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-PRODUCT_SHIPPING_API_LEVEL := 34
-​
+# Display Size & Density
+TARGET_SCREEN_HEIGHT  := 2712
+TARGET_SCREEN_DENSITY := 446
+TARGET_SCREEN_WIDTH   := 1220
+
+#PRODUCT_EXTRA_RECOVERY_KEYS += \
+#    vendor/recovery/security/miui
+
+# Dynamic partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_BUILD_SUPER_PARTITION  := false
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+	$(DEVICE_PATH) \
+	vendor/qcom/opensource/commonsys-intf/display
+
+#PRODUCT_SHIPPING_API_LEVEL := 34
 TARGET_OTA_ASSERT_DEVICE := amethyst
 
 TARGET_COPY_OUT_VENDOR := vendor

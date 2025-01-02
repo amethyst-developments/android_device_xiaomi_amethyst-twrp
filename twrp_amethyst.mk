@@ -17,13 +17,13 @@ $(call inherit-product, device/xiaomi/amethyst/device.mk)
 
 PRODUCT_DEVICE := amethyst
 PRODUCT_NAME := twrp_amethyst
-PRODUCT_BRAND := Redmi
-PRODUCT_MODEL := 24115RA8EC
-PRODUCT_MANUFACTURER := xiaomi
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MODEL := REDMI Note 14 Pro Plus
+PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="amethyst-user 14 UKQ1.240523.001 V816.0.20.0.UOPCNXM release-keys"
+#PRODUCT_BUILD_PROP_OVERRIDES += \
+#    PRIVATE_BUILD_DESC="amethyst-user 14 UKQ1.240523.001 V816.0.20.0.UOPCNXM release-keys"
 
-BUILD_FINGERPRINT := Redmi/amethyst/amethyst:14/UKQ1.240523.001/V816.0.20.0.UOPCNXM:user/release-keys
+#BUILD_FINGERPRINT := Redmi/amethyst/amethyst:14/UKQ1.240523.001/V816.0.20.0.UOPCNXM:user/release-keys
